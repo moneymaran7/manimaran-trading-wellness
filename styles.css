@@ -1481,6 +1481,27 @@ html.light .hero-img-light { display: block; }
    RESPONSIVE
 ═══════════════════════════════════════════════════ */
 @media (max-width: 900px) {
+  /* Collapse nav into hamburger — prevents "Yoga & Meditation" overflowing */
+  .nav-links {
+    display: none;
+    position: fixed;
+    inset: 70px 0 0 0;
+    background: rgba(5,13,26,0.98);
+    backdrop-filter: blur(20px);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    z-index: 999;
+  }
+  html.light .nav-links { background: rgba(250,247,242,0.98); }
+
+  .nav-links.open { display: flex; }
+
+  .hamburger { display: flex; }
+
+  .logo-tag { display: none; }   /* hide subtitle tag to save nav space */
+
   .contact-wrapper { grid-template-columns: 1fr; }
   .wellness-intro { grid-template-columns: 1fr; }
   .wellness-visual { display: none; }
@@ -1539,23 +1560,6 @@ html.light .hero-img-light { display: block; }
 }
 
 @media (max-width: 700px) {
-  .nav-links {
-    display: none;
-    position: fixed;
-    inset: 70px 0 0 0;
-    background: rgba(5,13,26,0.98);
-    backdrop-filter: blur(20px);
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
-    z-index: 999;
-  }
-
-  .nav-links.open { display: flex; }
-
-  .hamburger { display: flex; }
-
   .hero-stats { gap: 24px; }
   .stat-divider { display: none; }
 
