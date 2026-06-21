@@ -1509,50 +1509,45 @@ html.light .hero-img-light { display: block; }
 }
 
 @media (max-width: 900px) {
-  /* Stack: photo on top, text below */
   .hero {
-    flex-direction: column;
-    justify-content: flex-start;
     padding-top: 90px;
     padding-bottom: 60px;
   }
 
-  /* Override absolute positioning — joins normal flow */
+  /* Photo stays absolute — acts as background, shifted slightly right */
   .hero-photo {
-    position: relative;
-    top: auto;
-    right: auto;
-    height: auto;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-    z-index: 2;
+    position: absolute;
+    top: 0;
+    right: -20px;
+    height: 100%;
+    width: auto;
+    opacity: 0.22;
+    z-index: 1;
+    display: block;
   }
 
-  /* Strip mask entirely on mobile — just show the portrait cleanly */
   .hero-img {
-    height: 340px;
+    height: 100%;
     width: auto;
-    max-width: 75vw;
+    max-width: none;
     object-fit: cover;
     object-position: top center;
-    border-radius: 20px;
+    border-radius: 0;
     display: block;
-    /* Remove desktop mask — masks silently fail on some mobile browsers */
     -webkit-mask-image: none !important;
     mask-image: none !important;
     -webkit-mask-composite: unset;
     mask-composite: unset;
   }
 
-  /* Ensure the correct image is showing in each theme on mobile */
+  /* Ensure correct image per theme */
   .hero-img-dark  { display: block; }
   .hero-img-light { display: none; }
   html.light .hero-img-dark  { display: none; }
   html.light .hero-img-light { display: block; }
 
-  .hero-inner       { padding: 0 24px; width: 100%; }
+  /* Text floats above the background image */
+  .hero-inner       { position: relative; z-index: 2; padding: 0 24px; width: 100%; }
   .hero-content     { max-width: 100%; text-align: center; }
   .hero-stats       { justify-content: center; }
   .hero-cta         { justify-content: center; }
