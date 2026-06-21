@@ -447,7 +447,7 @@ html.light .theme-icon-dark  { display: none; }
   padding: 90px 0 60px;
 }
 
-/* ── Hero inner: text on left, constrained width ── */
+/* ── Hero inner: text container floats above the background photo ── */
 .hero-inner {
   position: relative;
   z-index: 2;
@@ -457,36 +457,33 @@ html.light .theme-icon-dark  { display: none; }
   padding: 0 64px;
 }
 
-/* ── Photo: absolutely anchored to top-right corner ── */
+/* ── Photo: absolute background layer covering the full hero ── */
 .hero-photo {
   position: absolute;
-  top: 0;
-  right: -160px;
-  height: 100%;
+  inset: 0;
   z-index: 1;
   pointer-events: none;
+  overflow: hidden;
 }
 
 .hero-img {
+  width: 100%;
   height: 100%;
-  width: auto;
   display: block;
   object-fit: cover;
-  object-position: top center;
-
+  object-position: right top;
   /*
-    Dual-axis fade using CSS mask compositing:
-    · Left axis: fully transparent at far-left → fully opaque at 45% from right
-    · Bottom axis: transparent at very bottom → opaque above 18%
-    intersect = multiply alpha channels → both must be opaque to show pixel
+    Desktop mask: image is vivid on the right (face) and fades left
+    toward the text, plus fades up from the very bottom.
+    Two-layer intersect: both must be opaque to show a pixel.
   */
   -webkit-mask-image:
-    linear-gradient(to left,  black 40%, rgba(0,0,0,0.5) 62%, transparent 85%),
-    linear-gradient(to top,   transparent 0%, rgba(0,0,0,0.6) 12%, black 22%);
+    linear-gradient(to left,  black 12%, rgba(0,0,0,0.6) 42%, transparent 66%),
+    linear-gradient(to top,   transparent 0%, black 20%);
   -webkit-mask-composite: source-in;
   mask-image:
-    linear-gradient(to left,  black 40%, rgba(0,0,0,0.5) 62%, transparent 85%),
-    linear-gradient(to top,   transparent 0%, rgba(0,0,0,0.6) 12%, black 22%);
+    linear-gradient(to left,  black 12%, rgba(0,0,0,0.6) 42%, transparent 66%),
+    linear-gradient(to top,   transparent 0%, black 20%);
   mask-composite: intersect;
 }
 
@@ -551,7 +548,7 @@ html.light .hero-img-light { display: block; }
 .hero-content {
   position: relative;
   z-index: 2;
-  max-width: 600px;
+  max-width: 640px;
   text-align: left;
 }
 
@@ -583,7 +580,7 @@ html.light .hero-img-light { display: block; }
 }
 
 .hero-title {
-  font-size: clamp(2.4rem, 5vw, 4.2rem);
+  font-size: clamp(2rem, 3.5vw, 3.2rem);
   font-weight: 900;
   line-height: 1.1;
   margin-bottom: 24px;
@@ -1488,50 +1485,36 @@ html.light .hero-img-light { display: block; }
 }
 
 @media (max-width: 900px) {
-  /* Stack: photo on top, text below */
   .hero {
-    flex-direction: column;
-    justify-content: flex-start;
-    padding-top: 90px;
-    padding-bottom: 60px;
+    padding: 90px 0 60px;
   }
 
-  /* Override absolute positioning — joins normal flow */
-  .hero-photo {
-    position: relative;
-    top: auto;
-    right: auto;
-    height: auto;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-    z-index: 2;
+  .hero-inner {
+    padding: 0 24px;
   }
 
-  /* Strip mask entirely on mobile — just show the portrait cleanly */
+  /*
+    Mobile mask: face is visible at the top, image dissolves downward
+    so the text area below reads cleanly against the dark background.
+  */
   .hero-img {
-    height: 340px;
-    width: auto;
-    max-width: 75vw;
-    object-fit: cover;
-    object-position: top center;
-    border-radius: 20px;
-    display: block;
-    /* Remove desktop mask — masks silently fail on some mobile browsers */
-    -webkit-mask-image: none !important;
-    mask-image: none !important;
-    -webkit-mask-composite: unset;
-    mask-composite: unset;
+    object-position: center top;
+    -webkit-mask-image:
+      linear-gradient(to left,  black 0%, black 100%),
+      linear-gradient(to top,   transparent 0%, black 20%);
+    -webkit-mask-composite: source-in;
+    mask-image:
+      linear-gradient(to left,  black 0%, black 100%),
+      linear-gradient(to top,   transparent 0%, black 20%);
+    mask-composite: intersect;
   }
 
-  /* Ensure the correct image is showing in each theme on mobile */
+  /* Ensure correct image per theme */
   .hero-img-dark  { display: block; }
   .hero-img-light { display: none; }
   html.light .hero-img-dark  { display: none; }
   html.light .hero-img-light { display: block; }
 
-  .hero-inner       { padding: 0 24px; width: 100%; }
   .hero-content     { max-width: 100%; text-align: center; }
   .hero-stats       { justify-content: center; }
   .hero-cta         { justify-content: center; }
@@ -1570,7 +1553,7 @@ html.light .hero-img-light { display: block; }
 
 @media (max-width: 480px) {
   .section { padding: 52px 0; }
-  .hero { padding: 90px 16px 60px; }
+  .hero { padding: 90px 0 60px; }
   .hero-title { font-size: 2rem; }
   .hero-cta { flex-direction: column; align-items: center; }
   .btn { width: 100%; justify-content: center; }
