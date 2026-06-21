@@ -1,3 +1,28 @@
+// ── Theme toggle ──
+const themeToggle = document.getElementById('themeToggle');
+const themeLabel  = themeToggle.querySelector('.theme-label');
+
+function applyTheme(mode) {
+  if (mode === 'light') {
+    document.body.classList.add('light');
+    themeLabel.textContent = 'Light';
+  } else {
+    document.body.classList.remove('light');
+    themeLabel.textContent = 'Dark';
+  }
+}
+
+// Load saved preference (default: dark)
+const savedTheme = localStorage.getItem('theme') || 'dark';
+applyTheme(savedTheme);
+
+themeToggle.addEventListener('click', () => {
+  const isLight = document.body.classList.contains('light');
+  const next    = isLight ? 'dark' : 'light';
+  applyTheme(next);
+  localStorage.setItem('theme', next);
+});
+
 // ── Navbar scroll effect ──
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
