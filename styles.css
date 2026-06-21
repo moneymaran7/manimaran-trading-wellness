@@ -1480,7 +1480,7 @@ html.light .hero-img-light { display: block; }
 /* ═══════════════════════════════════════════════════
    RESPONSIVE
 ═══════════════════════════════════════════════════ */
-@media (max-width: 900px) {
+@media (max-width: 1024px) {
   /* Collapse nav into hamburger — prevents "Yoga & Meditation" overflowing */
   .nav-links {
     display: none;
@@ -1500,8 +1500,10 @@ html.light .hero-img-light { display: block; }
 
   .hamburger { display: flex; }
 
-  .logo-tag { display: none; }   /* hide subtitle tag to save nav space */
+  .logo-tag { display: none; }
+}
 
+@media (max-width: 900px) {
   .contact-wrapper { grid-template-columns: 1fr; }
   .wellness-intro { grid-template-columns: 1fr; }
   .wellness-visual { display: none; }
