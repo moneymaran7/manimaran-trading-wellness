@@ -461,7 +461,7 @@ html.light .theme-icon-dark  { display: none; }
 .hero-photo {
   position: absolute;
   top: 0;
-  right: -80px;
+  right: -160px;
   height: 100%;
   z-index: 1;
   pointer-events: none;
