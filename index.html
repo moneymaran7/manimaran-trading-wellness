@@ -5,7 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Manimaran | Trading Mastery & Inner Wellness</title>
   <meta name="description" content="Professional futures & options trading signals community and certified yoga & meditation coaching by Manimaran." />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=4" />
+  <!-- Apply saved theme BEFORE render to prevent flash -->
+  <script>
+    (function () {
+      if (localStorage.getItem('theme') === 'light') {
+        document.documentElement.classList.add('light');
+      }
+    })();
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 </head>
@@ -54,10 +62,9 @@
         <span class="gradient-text">Master Your Mind.</span>
       </h1>
       <p class="hero-subtitle">
-        Retired <strong>Joint Chief Engineer, Tamil Nadu Water Supply and Drainage Board (TWAD)</strong> —
-        now a professional Futures &amp; Options trader trained under the <strong>Malkan methodology</strong>
-        and a certified meditation practitioner, bringing you daily trade signals,
-        yoga, and the mental edge to perform at your peak.
+        A passionate Futures &amp; Options trader trained under the <strong>Malkan methodology</strong>
+        and a certified meditation practitioner — dedicated to sharing daily trade signals,
+        yoga, and the mental discipline to help you perform at your absolute peak.
       </p>
       <div class="hero-stats">
         <div class="stat">
@@ -77,11 +84,6 @@
       </div>
       <div class="hero-credentials">
         <div class="cred-item">
-          <span class="cred-icon">🏛️</span>
-          <span>Retired Joint Chief Engineer — TWAD Board, Tamil Nadu</span>
-        </div>
-        <div class="cred-sep">·</div>
-        <div class="cred-item">
           <span class="cred-icon">📈</span>
           <span>Malkan-Trained F&amp;O Trader</span>
         </div>
@@ -89,6 +91,11 @@
         <div class="cred-item">
           <span class="cred-icon">🧘</span>
           <span>Certified Meditation Practitioner</span>
+        </div>
+        <div class="cred-sep">·</div>
+        <div class="cred-item">
+          <span class="cred-icon">👥</span>
+          <span>200+ Community Members</span>
         </div>
       </div>
       <div class="hero-cta">
@@ -524,6 +531,6 @@
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=4"></script>
 </body>
 </html>

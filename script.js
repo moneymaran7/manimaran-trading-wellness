@@ -1,24 +1,24 @@
 // ── Theme toggle ──
+// State lives on <html> so the early <head> script and this JS stay in sync
+const html        = document.documentElement;
 const themeToggle = document.getElementById('themeToggle');
 const themeLabel  = themeToggle.querySelector('.theme-label');
 
 function applyTheme(mode) {
   if (mode === 'light') {
-    document.body.classList.add('light');
+    html.classList.add('light');
     themeLabel.textContent = 'Light';
   } else {
-    document.body.classList.remove('light');
+    html.classList.remove('light');
     themeLabel.textContent = 'Dark';
   }
 }
 
-// Load saved preference (default: dark)
-const savedTheme = localStorage.getItem('theme') || 'dark';
-applyTheme(savedTheme);
+// Sync label with whatever the <head> script already applied
+applyTheme(html.classList.contains('light') ? 'light' : 'dark');
 
 themeToggle.addEventListener('click', () => {
-  const isLight = document.body.classList.contains('light');
-  const next    = isLight ? 'dark' : 'light';
+  const next = html.classList.contains('light') ? 'dark' : 'light';
   applyTheme(next);
   localStorage.setItem('theme', next);
 });
