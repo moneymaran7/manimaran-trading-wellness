@@ -1509,19 +1509,27 @@ html.light .hero-img-light { display: block; }
     z-index: 2;
   }
 
-  /* Reset dual-axis mask to simple bottom fade for portrait crop */
+  /* Strip mask entirely on mobile — just show the portrait cleanly */
   .hero-img {
-    height: 380px;
+    height: 340px;
     width: auto;
-    max-width: 72vw;
+    max-width: 75vw;
     object-fit: cover;
     object-position: top center;
     border-radius: 20px;
-    -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+    display: block;
+    /* Remove desktop mask — masks silently fail on some mobile browsers */
+    -webkit-mask-image: none !important;
+    mask-image: none !important;
     -webkit-mask-composite: unset;
-    mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
     mask-composite: unset;
   }
+
+  /* Ensure the correct image is showing in each theme on mobile */
+  .hero-img-dark  { display: block; }
+  .hero-img-light { display: none; }
+  html.light .hero-img-dark  { display: none; }
+  html.light .hero-img-light { display: block; }
 
   .hero-inner       { padding: 0 24px; width: 100%; }
   .hero-content     { max-width: 100%; text-align: center; }
