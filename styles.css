@@ -457,46 +457,29 @@ html.light .theme-icon-dark  { display: none; }
   padding: 0 64px;
 }
 
-/* ── Photo: absolutely anchored to top-right corner ── */
+/* ── Standing figure: right-anchored, bottom-aligned, full hero height ── */
 .hero-photo {
   position: absolute;
-  top: 0;
-  right: -160px;
+  right: 0;
+  bottom: 0;
   height: 100%;
+  width: 48%;
   z-index: 1;
   pointer-events: none;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
 }
 
 .hero-img {
-  height: 100%;
+  height: 98%;
   width: auto;
+  max-width: 100%;
   display: block;
-  object-fit: cover;
-  object-position: top center;
-
-  /*
-    Dual-axis fade using CSS mask compositing:
-    · Left axis: fully transparent at far-left → fully opaque at 45% from right
-    · Bottom axis: transparent at very bottom → opaque above 18%
-    intersect = multiply alpha channels → both must be opaque to show pixel
-  */
-  -webkit-mask-image:
-    linear-gradient(to left,  black 40%, rgba(0,0,0,0.5) 62%, transparent 85%),
-    linear-gradient(to top,   transparent 0%, rgba(0,0,0,0.6) 12%, black 22%);
-  -webkit-mask-composite: source-in;
-  mask-image:
-    linear-gradient(to left,  black 40%, rgba(0,0,0,0.5) 62%, transparent 85%),
-    linear-gradient(to top,   transparent 0%, rgba(0,0,0,0.6) 12%, black 22%);
-  mask-composite: intersect;
+  object-fit: contain;
+  object-position: bottom center;
+  /* PNG has transparent background — no CSS mask required */
 }
-
-/* Dark mode: navy photo visible, light photo hidden */
-.hero-img-light { display: none; }
-.hero-img-dark  { display: block; }
-
-/* Light mode: swap to white-background photo */
-html.light .hero-img-dark  { display: none; }
-html.light .hero-img-light { display: block; }
 
 .hero-bg {
   position: absolute;
@@ -1517,40 +1500,22 @@ html.light .hero-img-light { display: block; }
     padding-bottom: 60px;
   }
 
-  /* Override absolute positioning — joins normal flow */
+  /* Ghost figure stays absolute behind the text — low opacity watermark */
   .hero-photo {
-    position: relative;
-    top: auto;
-    right: auto;
-    height: auto;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-    z-index: 2;
+    right: -5%;
+    bottom: 0;
+    height: 80%;
+    width: 70%;
+    opacity: 0.18;
   }
 
-  /* Strip mask entirely on mobile — just show the portrait cleanly */
   .hero-img {
-    height: 340px;
+    height: 100%;
     width: auto;
-    max-width: 75vw;
-    object-fit: cover;
-    object-position: top center;
-    border-radius: 20px;
-    display: block;
-    /* Remove desktop mask — masks silently fail on some mobile browsers */
-    -webkit-mask-image: none !important;
-    mask-image: none !important;
-    -webkit-mask-composite: unset;
-    mask-composite: unset;
+    max-width: 100%;
+    object-fit: contain;
+    object-position: bottom center;
   }
-
-  /* Ensure the correct image is showing in each theme on mobile */
-  .hero-img-dark  { display: block; }
-  .hero-img-light { display: none; }
-  html.light .hero-img-dark  { display: none; }
-  html.light .hero-img-light { display: block; }
 
   .hero-inner       { padding: 0 24px; width: 100%; }
   .hero-content     { max-width: 100%; text-align: center; }
