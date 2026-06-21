@@ -438,13 +438,13 @@ html.light .theme-icon-dark  { display: none; }
    HERO
 ═══════════════════════════════════════════════════ */
 .hero {
-  min-height: 100vh;
+  min-height: 82vh;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   overflow: hidden;
-  padding: 100px 0 80px;
+  padding: 90px 0 60px;
 }
 
 /* ── Hero inner: text on left, constrained width ── */
@@ -745,12 +745,12 @@ html.light .hero-img-light { display: block; }
 /* ═══════════════════════════════════════════════════
    SECTIONS SHARED
 ═══════════════════════════════════════════════════ */
-.section { padding: 100px 0; }
+.section { padding: 72px 0; }
 
 .section-header {
   text-align: center;
   max-width: 680px;
-  margin: 0 auto 72px;
+  margin: 0 auto 48px;
 }
 
 .section-badge {
@@ -803,7 +803,7 @@ html.light .hero-img-light { display: block; }
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 24px;
-  margin-bottom: 72px;
+  margin-bottom: 48px;
 }
 
 .card {
@@ -1011,7 +1011,7 @@ html.light .hero-img-light { display: block; }
   grid-template-columns: 1fr auto;
   gap: 60px;
   align-items: center;
-  margin-bottom: 72px;
+  margin-bottom: 48px;
   position: relative;
 }
 
@@ -1122,7 +1122,7 @@ html.light .hero-img-light { display: block; }
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 24px;
-  margin-bottom: 64px;
+  margin-bottom: 48px;
 }
 
 .testimonial-card {
@@ -1193,7 +1193,7 @@ html.light .hero-img-light { display: block; }
   justify-content: center;
   gap: 60px;
   flex-wrap: wrap;
-  padding: 48px;
+  padding: 36px;
   background: linear-gradient(135deg, rgba(201,168,76,0.06), rgba(45,27,105,0.08));
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -1395,14 +1395,14 @@ html.light .hero-img-light { display: block; }
 .footer {
   background: var(--navy-mid);
   border-top: 1px solid var(--border);
-  padding: 72px 0 0;
+  padding: 52px 0 0;
 }
 
 .footer-grid {
   display: grid;
   grid-template-columns: 1.5fr 1fr 1fr 1.5fr;
   gap: 48px;
-  margin-bottom: 48px;
+  margin-bottom: 32px;
 }
 
 .footer-logo {
@@ -1569,8 +1569,8 @@ html.light .hero-img-light { display: block; }
 }
 
 @media (max-width: 480px) {
-  .section { padding: 72px 0; }
-  .hero { padding: 100px 16px 80px; }
+  .section { padding: 52px 0; }
+  .hero { padding: 90px 16px 60px; }
   .hero-title { font-size: 2rem; }
   .hero-cta { flex-direction: column; align-items: center; }
   .btn { width: 100%; justify-content: center; }
