@@ -1488,11 +1488,45 @@ html.light .hero-img-light { display: block; }
 }
 
 @media (max-width: 900px) {
-  .hero-photo    { display: none; }
-  .hero-inner    { padding: 0 24px; }
-  .hero-content  { max-width: 100%; text-align: center; }
-  .hero-stats    { justify-content: center; }
-  .hero-cta      { justify-content: center; }
+  /* Stack: photo on top, text below */
+  .hero {
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 90px;
+    padding-bottom: 60px;
+  }
+
+  /* Override absolute positioning — joins normal flow */
+  .hero-photo {
+    position: relative;
+    top: auto;
+    right: auto;
+    height: auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    z-index: 2;
+  }
+
+  /* Reset dual-axis mask to simple bottom fade for portrait crop */
+  .hero-img {
+    height: 380px;
+    width: auto;
+    max-width: 72vw;
+    object-fit: cover;
+    object-position: top center;
+    border-radius: 20px;
+    -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+    -webkit-mask-composite: unset;
+    mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+    mask-composite: unset;
+  }
+
+  .hero-inner       { padding: 0 24px; width: 100%; }
+  .hero-content     { max-width: 100%; text-align: center; }
+  .hero-stats       { justify-content: center; }
+  .hero-cta         { justify-content: center; }
   .hero-credentials { justify-content: center; }
 }
 
